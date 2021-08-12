@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gourmet_eats/views/landing_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,11 +22,9 @@ class MyApp extends StatelessWidget {
           title: Text("Gourmet Eats"),
         ),
         body: Center(
-          child: Container(
-            child: Text("Welcome")
+          child: LandingView()
           ),
         ),
-      ),
     );
   }
 }
