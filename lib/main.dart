@@ -21,9 +21,8 @@ class MyApp extends StatelessWidget {
           leading: Icon(Icons.menu,size:30,color: Colors.white,),
           title: Text("Gourmet Eats"),
         ),
-        body: Center(
-          child: LandingView()
-          ),
+        body:  LandingView()
+
         ),
     );
   }
