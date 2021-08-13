@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gourmet_eats/constants.dart';
+import 'package:gourmet_eats/views/checkout_view.dart';
 import 'package:gourmet_eats/widgets/labeled_checkbox.dart';
 
 class OrderView extends StatefulWidget {
@@ -24,7 +25,7 @@ class _OrderViewState extends State<OrderView> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
-        child: BottomBar(),
+        child: bottomBar(),
       ),
       appBar: AppBar(
         leading: Icon(Icons.menu,size:30,color: Colors.white,),
@@ -37,7 +38,7 @@ class _OrderViewState extends State<OrderView> {
               Container(
                height: 250.0,
                 child: Center(child: Text("IMAGE",style: TextStyle(fontSize: 30.0),)),),
-              OrderList(context),
+              orderList(context),
             ],
           ),
         ),
@@ -45,7 +46,7 @@ class _OrderViewState extends State<OrderView> {
     );
   }
 
-  Widget OrderList(context){
+  Widget orderList(context){
     return Container(
       width: MediaQuery.of(context).size.width,
       color: PrimaryColor,
@@ -136,12 +137,14 @@ class _OrderViewState extends State<OrderView> {
     );
   }
 
-  Widget BottomBar(){
+  Widget bottomBar(){
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text("BURGERS:  2",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18.0)),
-        TextButton(onPressed: () {}, child: Text("PLACE ORDER",style: TextStyle(fontWeight: FontWeight.w900,fontSize: 20.0))),
+        TextButton(onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutView()),);
+        }, child: Text("PLACE ORDER",style: TextStyle(fontWeight: FontWeight.w900,fontSize: 20.0))),
         Text("TOTAL",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18.0))
       ],
     );
