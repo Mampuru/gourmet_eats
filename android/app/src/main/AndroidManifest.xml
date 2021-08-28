@@ -2,7 +2,7 @@
     package="com.ivisioncorp.gourmet_eats">
    <application
         android:label="gourmet_eats"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
