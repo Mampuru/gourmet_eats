@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gourmet_eats/views/landing_view.dart';
+import 'package:gourmet_eats/views/menu_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,15 +13,17 @@ class MyApp extends StatelessWidget {
       title: 'Gourmet Eats',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        primarySwatch: Colors.orange,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
         appBar: AppBar(
-          leading: Icon(Icons.menu,size:30,color: Colors.white,),
-          title: Text("Gourmet Eats"),
+          backgroundColor: Colors.grey[900],
+          centerTitle: true,
+          title: Text("Welcome To",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),),
+
         ),
-        body:  LandingView()
+        body: MenuView()
 
         ),
     );
