@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gourmet_eats/constants.dart';
-import 'package:gourmet_eats/views/checkout_view.dart';
-import 'package:gourmet_eats/views/menu_view.dart';
+import 'package:gourmet_eats/views/cart_view.dart';
 import 'package:gourmet_eats/widgets/labeled_checkbox.dart';
 
 class BeefView extends StatefulWidget {
@@ -19,7 +18,6 @@ class _BeefViewState extends State<BeefView> {
   bool _cheese = false;
   bool _tomato = false;
 
-  bool _addDoublePattie = false;
   bool _addCheese = false;
   bool _addChilli = false;
 
@@ -76,7 +74,7 @@ class _BeefViewState extends State<BeefView> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text("Beef burgers",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20.0),),
+            Text("Single Beef burgers",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20.0),),
             IconButton(onPressed: () => {
             setState(() {
               counter = --counter;
@@ -99,14 +97,13 @@ class _BeefViewState extends State<BeefView> {
           padding: const EdgeInsets.only(right:270.0),
           child: Text("Extras",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 19.0),),
         ),
-        LabeledCheckbox(label: "Double Patty",padding:const EdgeInsets.only(left:15.0),value: _addDoublePattie,onChanged: (bool newValue) {
-          setState(() {
-            _addDoublePattie = newValue;
-          });
-        },),
         LabeledCheckbox(label: "Cheese",padding:const EdgeInsets.only(left:15.0),value: _addCheese,onChanged: (bool newValue) {
           setState(() {
             _addCheese = newValue;
+            if(_addCheese){
+              var _total = 5*counter;
+              total = total + _total.toDouble();
+            }
           });
         },),
         LabeledCheckbox(label: "Chilli",padding:const EdgeInsets.only(left:15.0),value: _addChilli,onChanged: (bool newValue) {
@@ -178,10 +175,9 @@ class _BeefViewState extends State<BeefView> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         TextButton(onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => MenuView()),);
         }, child: Text("TOTAL: R$total",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 20.0,color: Colors.black))),
         TextButton(onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutView()),);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => CartView()),);
         }, child: Text("ADD TO CART",style: TextStyle(fontWeight: FontWeight.w900,fontSize: 25.0,color: Colors.black))),
       ],
     );
@@ -193,4 +189,20 @@ class _BeefViewState extends State<BeefView> {
       total = _total.toDouble();
     });
   }
+
+
+  calculateDoubleTotal(){
+    var _total = 75*counter;
+    setState(() {
+      total = _total.toDouble();
+    });
+  }
+
+  addCheese(){
+    var _total =  5*counter;
+    setState(() {
+      total = total + _total.toDouble();
+    });
+  }
+
 }

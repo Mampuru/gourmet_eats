@@ -11,7 +11,7 @@ class ShareButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ElevatedButton.icon(
     style: ElevatedButton.styleFrom(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 100, vertical: 12),
     ),
     label: Text('SEND ORDER', style: TextStyle(fontSize: 20)),
     icon: Icon(Icons.share),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gourmet_eats/constants.dart';
-import 'package:gourmet_eats/views/checkout_view.dart';
-import 'package:gourmet_eats/views/menu_view.dart';
+import 'package:gourmet_eats/views/cart_view.dart';
 import 'package:gourmet_eats/widgets/labeled_checkbox.dart';
 
 class ChickenView extends StatefulWidget {
@@ -19,7 +18,6 @@ class _ChickenViewState extends State<ChickenView> {
   bool _cheese = false;
   bool _tomato = false;
 
-  bool _addDoublePattie = false;
   bool _addCheese = false;
   bool _addChilli = false;
 
@@ -99,11 +97,6 @@ class _ChickenViewState extends State<ChickenView> {
           padding: const EdgeInsets.only(right:270.0),
           child: Text("Extras",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 19.0),),
         ),
-        LabeledCheckbox(label: "Double chicken",padding:const EdgeInsets.only(left:15.0),value: _addDoublePattie,onChanged: (bool newValue) {
-          setState(() {
-            _addDoublePattie = newValue;
-          });
-        },),
         LabeledCheckbox(label: "Cheese",padding:const EdgeInsets.only(left:15.0),value: _addCheese,onChanged: (bool newValue) {
           setState(() {
             _addCheese = newValue;
@@ -178,10 +171,9 @@ class _ChickenViewState extends State<ChickenView> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         TextButton(onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => MenuView()),);
         }, child: Text("TOTAL: R$total",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 20.0,color: Colors.black))),
         TextButton(onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutView()),);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => CartView()),);
         }, child: Text("ADD TO CART",style: TextStyle(fontWeight: FontWeight.w900,fontSize: 25.0,color: Colors.black))),
       ],
     );
