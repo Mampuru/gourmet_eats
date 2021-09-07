@@ -4,10 +4,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gourmet_eats/constants.dart';
-import 'package:gourmet_eats/views/build_burger/beef_view.dart';
-import 'package:gourmet_eats/views/build_burger/chicken_view.dart';
 import 'package:gourmet_eats/views/build_burger/drinks_view.dart';
 import 'package:gourmet_eats/views/build_burger/wings_view.dart';
+import 'package:gourmet_eats/views/menu_detail_view.dart';
 
 class MenuView extends StatefulWidget {
   @override
@@ -46,7 +45,7 @@ class _MenuViewState extends State<MenuView> {
                       SizedBox(height: 30.0,),
                       InkWell(
                         onTap: () => {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => BeefView()),)
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => MenuDetailView()),)
                         },
                         child: Text(
                           'Beef Burger',
@@ -55,7 +54,7 @@ class _MenuViewState extends State<MenuView> {
                       SizedBox(height: 24.0,),
                       InkWell(
                         onTap: () => {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ChickenView()),)
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => MenuDetailView()),)
                         },
                         child: Text(
                           'Chicken Burger',
