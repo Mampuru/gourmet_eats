@@ -1,7 +1,9 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:gourmet_eats/constants.dart';
 import 'package:gourmet_eats/views/cart_view.dart';
 import 'package:gourmet_eats/widgets/labeled_checkbox.dart';
+import 'package:gourmet_eats/widgets/primary_button_widget.dart';
 
 class ChickenView extends StatefulWidget {
   @override
@@ -33,12 +35,30 @@ class _ChickenViewState extends State<ChickenView> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
-        child: bottomBar(),
+        child: bottomBar(context),
       ),
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Colors.grey[900],
         centerTitle: true,
         title: Text("Chicken Burger",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),),
+        actions: [
+          Badge(
+            badgeColor: Colors.orange,
+            position: BadgePosition.topEnd(top: 10, end: 10),
+            showBadge: true,
+            badgeContent: Text('$counter'),
+            child: IconButton(
+              icon: Icon(
+                Icons.shopping_basket,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CartView()));
+              },
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -166,18 +186,33 @@ class _ChickenViewState extends State<ChickenView> {
     );
   }
 
-  Widget bottomBar(){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        TextButton(onPressed: () {
-        }, child: Text("TOTAL: R$total",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 20.0,color: Colors.black))),
-        TextButton(onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => CartView()),);
-        }, child: Text("ADD TO CART",style: TextStyle(fontWeight: FontWeight.w900,fontSize: 25.0,color: Colors.black))),
-      ],
+  Widget bottomBar(BuildContext context){
+    var _width = MediaQuery.of(context).size.width;
+    return Container(
+      height: 90,
+      color: Colors.grey[900],
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          SizedBox(height: 5,),
+          Row(
+            children: [
+              SizedBox(width: 10,),
+              Text("TOTAL: ",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 13.0,color: Colors.white)),
+              Text("R$total",style: TextStyle(fontWeight: FontWeight.w900,fontSize: 20.0,color: Colors.white))
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+            child: PrimaryButton(buttonName: "ADD TO CART",width: _width,onTap: () => {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => CartView()),)
+            },),
+          )
+        ],
+      ),
     );
   }
+
 
   calculateTotal(){
     var _total = 50*counter;

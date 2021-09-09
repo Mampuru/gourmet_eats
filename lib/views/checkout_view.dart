@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gourmet_eats/constants.dart';
-import 'package:gourmet_eats/widgets/share_button_widget.dart';
+import 'package:gourmet_eats/widgets/primary_button_widget.dart';
 import 'package:share/share.dart';
 
 class CheckoutView extends StatelessWidget {
@@ -30,11 +30,12 @@ class CheckoutView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Colors.grey[900],
         centerTitle: true,
         title: Text("Checkout",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),),
       ),
-      bottomNavigationBar: bottomBar(),
+      bottomNavigationBar: bottomBar(context),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -65,9 +66,8 @@ class CheckoutView extends StatelessWidget {
                           style: TextStyle(color: Colors.white),
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
-                            focusColor: Colors.green,
-                            fillColor: White,
                             labelText: 'Name',
+                            labelStyle: TextStyle(color: Colors.white),
                             border: OutlineInputBorder(),
                           ),
                         ),
@@ -75,9 +75,8 @@ class CheckoutView extends StatelessWidget {
                         TextField(
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                            focusColor: White,
-                            fillColor: White,
                             labelText: 'Mobile Number',
+                            labelStyle: TextStyle(color: Colors.white),
                             border: OutlineInputBorder(),
                           ),
                         ),
@@ -85,9 +84,8 @@ class CheckoutView extends StatelessWidget {
                         TextField(
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
-                            focusColor: Colors.white,
-                            fillColor: Colors.white,
                             labelText: 'Comment',
+                            labelStyle: TextStyle(color: Colors.white),
                             border: OutlineInputBorder(),
                           ),
                         ),
@@ -105,17 +103,20 @@ class CheckoutView extends StatelessWidget {
     );
   }
 
-  Widget bottomBar(){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ShareButtonWidget(onClicked: () {
-            Share.share(object.toString());
-          },),
-        )
-      ],
+  Widget bottomBar(BuildContext context){
+    var _width = MediaQuery.of(context).size.width;
+    return Container(
+      color: Colors.grey[900],
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: PrimaryButton(width: _width,buttonName: "SEND ORDER",onTap: () {
+              Share.share(object.toString());
+            },),
+          )
+        ],
+      ),
     );
   }
 

@@ -1,11 +1,13 @@
 
 import 'dart:ui';
 
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gourmet_eats/constants.dart';
 import 'package:gourmet_eats/models/menu_data.dart';
 import 'package:gourmet_eats/views/build_burger/beef_view.dart';
+import 'package:gourmet_eats/views/cart_view.dart';
 
 class MenuDetailView extends StatefulWidget {
   @override
@@ -22,9 +24,28 @@ class _MenuDetailViewState extends State<MenuDetailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
-    backgroundColor: Colors.grey[900],
-      centerTitle: true,
-      title: Text("Beef Burger",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),),
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Colors.grey[900],
+        centerTitle: true,
+        title: Text("Beef Burger",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),),
+        actions: [
+          Badge(
+            badgeColor: Colors.orange,
+            position: BadgePosition.topEnd(top: 10, end: 10),
+            showBadge: true,
+            badgeContent: null,
+            child: IconButton(
+              icon: Icon(
+                Icons.shopping_basket,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CartView()));
+              },
+            ),
+          ),
+
+        ],
     ),
       body: Container(
         decoration: BoxDecoration(
