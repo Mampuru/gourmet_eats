@@ -96,9 +96,13 @@ class _BeefViewState extends State<BeefView> {
           children: [
             Text("Single Beef burgers",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20.0),),
             IconButton(onPressed: () => {
-            setState(() {
-              counter = --counter;
-            }),
+              if(counter == 0){
+                //Do nothing
+              }else{
+                setState(() {
+                  counter = --counter;
+                }),
+              },
               calculateTotal()
             }, icon: Icon(Icons.remove_circle,size: 30,)),
             Text("$counter",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20.0,),),
