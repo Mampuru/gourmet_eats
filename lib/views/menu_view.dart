@@ -24,7 +24,7 @@ class _MenuViewState extends State<MenuView> {
             colorFilter:  ColorFilter.mode(Colors.black.withOpacity(0.3),BlendMode.darken)
           )
       ),
-      child: Column(
+      child:  Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -83,7 +83,10 @@ class _MenuViewState extends State<MenuView> {
                 ),
               ),
             ),
-          )
+          ),
+          Container(
+            child: Image(image: AssetImage(HalalImage),width: 70,height: 70,),
+          ),
         ],
       ),
     );
