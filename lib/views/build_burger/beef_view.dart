@@ -120,9 +120,11 @@ class _BeefViewState extends State<BeefView> {
         LabeledCheckbox(label: "Cheese",padding:const EdgeInsets.only(left:15.0),value: _addCheese,onChanged: (bool newValue) {
           setState(() {
             _addCheese = newValue;
+            var _total = 5*counter;
             if(_addCheese){
-              var _total = 5*counter;
               total = total + _total.toDouble();
+            }else{
+              total = total - _total.toDouble();
             }
           });
         },),
