@@ -90,7 +90,6 @@ class CheckoutView extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 20.0,),
-
                       ],
                     ),
                   ),
@@ -104,14 +103,13 @@ class CheckoutView extends StatelessWidget {
   }
 
   Widget bottomBar(BuildContext context){
-    var _width = MediaQuery.of(context).size.width;
     return Container(
       color: Colors.grey[900],
       child: Row(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8),
-            child: PrimaryButton(width: _width,buttonName: "SEND ORDER",onTap: () {
+            padding: const EdgeInsets.all(8.0),
+            child: PrimaryButton(buttonName: "SEND ORDER",width:340,onTap: () {
               Share.share(object.toString());
             },),
           )
