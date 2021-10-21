@@ -76,7 +76,7 @@ class _MenuDetailViewState extends State<MenuDetailView> {
                         SizedBox(height: 30.0,),
                         InkWell(
                           onTap: () => {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => BeefView()),)
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BeefView(type: "Single Beef")),)
                           },
                           child: Text(
                             'Single Patty',
@@ -85,7 +85,7 @@ class _MenuDetailViewState extends State<MenuDetailView> {
                         SizedBox(height: 24.0,),
                         InkWell(
                           onTap: () => {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => BeefView()),)
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BeefView(type: "Double Beef")),)
                           },
                           child: Text(
                             'Double Patty',
