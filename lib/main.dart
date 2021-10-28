@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:gourmet_eats/views/cart_view.dart';
 import 'package:gourmet_eats/views/menu_view.dart';
 
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Gourmet Eats',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

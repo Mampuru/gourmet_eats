@@ -4,20 +4,23 @@ import 'package:gourmet_eats/models/cart_item.dart';
 class CartController extends GetxController {
   var counter = 0.obs;
   var total = 0.obs;
-
-  List<CartItem> cart = [];
+  var order = [].obs;
+  var cart = [].obs;
 
   @override
   void onInit() {
     super.onInit();
+
   }
 
   addToCart(CartItem item){
     cart.add(item);
+    totalPrice(cart);
   }
 
-  removeFromCart(CartItem item){
-    cart.remove(item);
+  removeFromCart(int index){
+    cart.removeAt(index);
+    totalPrice(cart);
   }
 
   emptyCart(){
@@ -26,7 +29,13 @@ class CartController extends GetxController {
     counter = 0.obs;
   }
 
-  getCart(){
-    return cart;
+  totalPrice(List list) {
+    var priceList = [];
+    if(list.isNotEmpty){
+      list.forEach((element) {
+        priceList.add(element.price);
+      });
+      total = priceList.reduce((value, element) => value + element);
+    }
   }
 }

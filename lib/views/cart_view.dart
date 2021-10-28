@@ -4,9 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'package:gourmet_eats/constants.dart';
 import 'package:gourmet_eats/controllers/cart_controller.dart';
-import 'package:gourmet_eats/models/cart_item.dart';
 import 'package:gourmet_eats/views/checkout_view.dart';
 import 'package:gourmet_eats/widgets/primary_button_widget.dart';
 
@@ -16,16 +14,7 @@ class CartView extends StatefulWidget {
 }
 
 class _CartViewState extends State<CartView> {
-  var total = 0.00;
-  List<CartItem> cartData;
-  CartController cartController = Get.put(CartController());
-
-  @override
-  void initState() {
-    super.initState();
-    cartData = cartController.getCart();
-    totalPrice(cartData);
-  }
+  CartController cartController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -38,37 +27,8 @@ class _CartViewState extends State<CartView> {
               fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),),
         ),
         bottomNavigationBar: bottomBar(context),
-        body: cartData.isEmpty ?
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: buildBlur(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
-              height: 50.0,
-              color: Colors.black.withOpacity(0.6),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("Cart Is Empty",
-                          style: TextStyle(fontSize: 25, color: Colors.white),),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-        )
-            : ListView.builder(
-          itemCount: cartData.length,
+        body: Obx(() => ListView.builder(
+          itemCount: cartController.cart.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
@@ -86,12 +46,15 @@ class _CartViewState extends State<CartView> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text("${cartData[index].quantity}x", style: TextStyle(
+                          Text("${cartController.cart[index].quantity}x", style: TextStyle(
                               fontSize: 25, color: Colors.white),),
-                          Text(cartData[index].type, style: TextStyle(
+                          Text(cartController.cart[index].type, style: TextStyle(
                               fontSize: 25, color: Colors.white),),
-                          Text("R${cartData[index].price}", style: TextStyle(
-                              fontSize: 25, color: Colors.white),)
+                          Text("R${cartController.cart[index].price}", style: TextStyle(
+                              fontSize: 25, color: Colors.white),),
+                          IconButton(onPressed: () => {
+                            cartController.removeFromCart(index),
+                          }, icon: Icon(Icons.delete,color: Colors.orangeAccent,))
                         ],
                       )
                     ],
@@ -100,7 +63,8 @@ class _CartViewState extends State<CartView> {
               ),
             );
           },
-        )
+        ))
+
     );
   }
 
@@ -122,7 +86,7 @@ class _CartViewState extends State<CartView> {
               Text("TOTAL: ", style: TextStyle(fontWeight: FontWeight.w600,
                   fontSize: 13.0,
                   color: Colors.white)),
-              Text("R$total", style: TextStyle(fontWeight: FontWeight.w900,
+              Text("R${cartController.total}", style: TextStyle(fontWeight: FontWeight.w900,
                   fontSize: 20.0,
                   color: Colors.white))
             ],
@@ -155,13 +119,4 @@ class _CartViewState extends State<CartView> {
         ),
       );
 
-  totalPrice(List list) {
-    var priceList = [];
-    if(list.isEmpty){
-      list.forEach((element) {
-        priceList.add(element.price);
-      });
-      total = priceList.reduce((value, element) => value + element);
-    }
-  }
 }

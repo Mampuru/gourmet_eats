@@ -73,6 +73,7 @@ class CheckoutView extends StatelessWidget {
                         ),
                         SizedBox(height: 10.0,),
                         TextField(
+                          style: TextStyle(color: Colors.white),
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             labelText: 'Mobile Number',
@@ -82,6 +83,7 @@ class CheckoutView extends StatelessWidget {
                         ),
                         SizedBox(height: 10.0,),
                         TextField(
+                          style: TextStyle(color: Colors.white),
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
                             labelText: 'Comment',
