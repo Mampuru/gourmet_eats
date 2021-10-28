@@ -15,6 +15,13 @@ class CartView extends StatefulWidget {
 
 class _CartViewState extends State<CartView> {
   CartController cartController = Get.find();
+  var total=0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    totalPrice(cartController.cart);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +61,7 @@ class _CartViewState extends State<CartView> {
                               fontSize: 25, color: Colors.white),),
                           IconButton(onPressed: () => {
                             cartController.removeFromCart(index),
+                            totalPrice(cartController.cart),
                           }, icon: Icon(Icons.delete,color: Colors.orangeAccent,))
                         ],
                       )
@@ -86,7 +94,7 @@ class _CartViewState extends State<CartView> {
               Text("TOTAL: ", style: TextStyle(fontWeight: FontWeight.w600,
                   fontSize: 13.0,
                   color: Colors.white)),
-              Text("R${cartController.total}", style: TextStyle(fontWeight: FontWeight.w900,
+              Text("R$total", style: TextStyle(fontWeight: FontWeight.w900,
                   fontSize: 20.0,
                   color: Colors.white))
             ],
@@ -118,5 +126,21 @@ class _CartViewState extends State<CartView> {
           child: child,
         ),
       );
+
+  totalPrice(List list) {
+    var priceList = [];
+    if(list.isNotEmpty){
+      list.forEach((element) {
+        priceList.add(element.price);
+      });
+      setState(() {
+        total = priceList.reduce((value, element) => value + element);
+      });
+    }else if(list.isEmpty){
+      setState(() {
+        total = 0.0;
+      });
+    }
+  }
 
 }

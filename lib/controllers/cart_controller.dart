@@ -15,27 +15,15 @@ class CartController extends GetxController {
 
   addToCart(CartItem item){
     cart.add(item);
-    totalPrice(cart);
   }
 
   removeFromCart(int index){
     cart.removeAt(index);
-    totalPrice(cart);
   }
 
   emptyCart(){
     cart.clear();
     total = 0.obs;
     counter = 0.obs;
-  }
-
-  totalPrice(List list) {
-    var priceList = [];
-    if(list.isNotEmpty){
-      list.forEach((element) {
-        priceList.add(element.price);
-      });
-      total = priceList.reduce((value, element) => value + element);
-    }
   }
 }
