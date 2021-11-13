@@ -26,4 +26,12 @@ class CartController extends GetxController {
     total = 0.obs;
     counter = 0.obs;
   }
+
+  counterIncrement(){
+    counter++;
+  }
+
+  counterDecrement(){
+    counter--;
+  }
 }
