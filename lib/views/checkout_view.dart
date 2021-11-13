@@ -6,6 +6,9 @@ import 'package:gourmet_eats/widgets/primary_button_widget.dart';
 import 'package:share/share.dart';
 
 class CheckoutView extends StatelessWidget {
+  final total;
+  CheckoutView({this.total});
+
   final text = '';
   final object = {
     "name": "Jack",
@@ -60,7 +63,7 @@ class CheckoutView extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: 20.0,),
-                        Text("TOTAL: R55.00",style: TextStyle(fontSize: TitleText,color: Colors.white),),
+                        Text("TOTAL: R$total",style: TextStyle(fontSize: TitleText,color: Colors.white),),
                         SizedBox(height: 10.0,),
                         TextField(
                           style: TextStyle(color: Colors.white),

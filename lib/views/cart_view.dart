@@ -104,8 +104,9 @@ class _CartViewState extends State<CartView> {
             child: PrimaryButton(
               buttonName: "CHECKOUT", width: _width, onTap: () =>
             {
+
               Navigator.push(context,
-                MaterialPageRoute(builder: (context) => CheckoutView()),)
+                MaterialPageRoute(builder: (context) => CheckoutView(total: total,)),)
             },),
           )
         ],

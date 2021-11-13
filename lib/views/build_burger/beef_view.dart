@@ -294,7 +294,7 @@ class _BeefViewState extends State<BeefView> {
   }
 
   calculateTotal(){
-    var _total = 50*counter;
+    var _total = 55*counter;
     setState(() {
       total = _total.toDouble();
     });
