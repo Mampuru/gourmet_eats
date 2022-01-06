@@ -2,7 +2,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:gourmet_eats/controllers/cart_controller.dart';
 import 'package:gourmet_eats/views/checkout_view.dart';

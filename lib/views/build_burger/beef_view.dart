@@ -9,7 +9,7 @@ import 'package:gourmet_eats/widgets/labeled_checkbox.dart';
 import 'package:gourmet_eats/widgets/primary_button_widget.dart';
 
 class BeefView extends StatefulWidget {
-  String type;
+  final type;
   BeefView({this.type});
 
   @override

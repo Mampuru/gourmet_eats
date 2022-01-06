@@ -13,7 +13,6 @@ class ChickenView extends StatefulWidget {
 enum BurgerType { Beef,Chicken}
 
 class _ChickenViewState extends State<ChickenView> {
-  BurgerType _character = BurgerType.Beef ;
   bool _pickles = false;
   bool _onions = false;
   bool _lettuce = false;
