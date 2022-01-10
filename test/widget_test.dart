@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:gourmet_eats/main.dart';
 import 'package:gourmet_eats/widgets/primary_button_widget.dart';
 import 'package:gourmet_eats/widgets/share_button_widget.dart';
 
