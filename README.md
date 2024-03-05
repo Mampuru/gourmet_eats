@@ -1,5 +1,7 @@
 # Gourmet Eats
 
+[![My Skills](https://skillicons.dev/icons?i=flutter,dart)](https://skillicons.dev)
+
 A fast food application made easy.
 
 ## Getting Started
