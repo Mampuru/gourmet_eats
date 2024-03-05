@@ -1,4 +1,4 @@
-# gourmet_eats
+# Gourmet Eats
 
 A fast food application made easy.
 
