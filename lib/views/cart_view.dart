@@ -114,8 +114,8 @@ class _CartViewState extends State<CartView> {
   }
 
   Widget buildBlur({
-    @required Widget child,
-    BorderRadius borderRadius,
+    required Widget child,
+    BorderRadius? borderRadius,
     double sigmaX = 0,
     double sigmaY = 0,
   }) =>

@@ -124,8 +124,8 @@ class CheckoutView extends StatelessWidget {
   }
 
   Widget buildBlur({
-    @required Widget child,
-    BorderRadius borderRadius,
+    required Widget child,
+    BorderRadius? borderRadius,
     double sigmaX = 0,
     double sigmaY = 0,
   }) => ClipRRect(
