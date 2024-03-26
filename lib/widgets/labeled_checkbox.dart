@@ -27,8 +27,10 @@ class LabeledCheckbox extends StatelessWidget {
             Checkbox(
               checkColor: Colors.black,
               value: value,
-              onChanged: (bool newValue) {
-                onChanged(newValue);
+              onChanged: (bool? newValue) {
+                if (newValue != null) {
+                  onChanged(newValue);
+                }
               },
             ),
             Expanded(child: Text(label)),
