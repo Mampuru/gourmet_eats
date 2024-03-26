@@ -34,7 +34,6 @@ dependencies:
   fluttertoast: ^8.2.4
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.3.10
-  badges: ^3.1.2
 
 dev_dependencies:
   integration_test:

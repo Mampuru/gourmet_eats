@@ -1,7 +1,6 @@
 
 import 'dart:ui';
 
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:gourmet_eats/constants.dart';
 import 'package:gourmet_eats/models/menu_data.dart';
@@ -29,10 +28,8 @@ class _MenuDetailViewState extends State<MenuDetailView> {
         title: Text("Beef Burger",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),),
         actions: [
           Badge(
-            badgeColor: Colors.orange,
-            position: BadgePosition.topEnd(top: 10, end: 10),
-            showBadge: true,
-            badgeContent: null,
+            backgroundColor: Colors.orange,
+            isLabelVisible: true,
             child: IconButton(
               icon: Icon(
                 Icons.shopping_basket,
@@ -104,8 +101,8 @@ class _MenuDetailViewState extends State<MenuDetailView> {
   }
 
   Widget buildBlur({
-    @required Widget child,
-    BorderRadius borderRadius,
+    required Widget child,
+    BorderRadius? borderRadius,
     double sigmaX = 0,
     double sigmaY = 0,
   }) => ClipRRect(
