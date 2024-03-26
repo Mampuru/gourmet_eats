@@ -4,8 +4,8 @@ class ShareButtonWidget extends StatelessWidget {
   final VoidCallback onClicked;
 
   const ShareButtonWidget({
-    Key key,
-    @required this.onClicked,
+    Key? key,
+    required this.onClicked,
   }) : super(key: key);
 
   @override
