@@ -1,4 +1,3 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gourmet_eats/constants.dart';
@@ -19,7 +18,7 @@ class BeefView extends StatefulWidget {
 enum BurgerType { Beef,Chicken}
 
 class _BeefViewState extends State<BeefView> {
-  String type;
+  late String type;
   var toppings = [];
   var sauces = [];
   var extras = [];
@@ -62,10 +61,9 @@ class _BeefViewState extends State<BeefView> {
         title: Text("Beef Burger",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),),
         actions: [
           Badge(
-            badgeColor: Colors.orange,
-            position: BadgePosition.topEnd(top: 10, end: 10),
-            showBadge: true,
-            badgeContent: Text('$counter'),
+            backgroundColor:Colors.orange,
+            isLabelVisible: true,
+            label: Text('$counter'),
             child: IconButton(
               icon: Icon(
                 Icons.shopping_basket,

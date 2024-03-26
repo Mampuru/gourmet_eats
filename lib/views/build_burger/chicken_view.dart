@@ -1,4 +1,3 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:gourmet_eats/constants.dart';
 import 'package:gourmet_eats/views/cart_view.dart';
@@ -43,10 +42,9 @@ class _ChickenViewState extends State<ChickenView> {
         title: Text("Chicken Burger",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),),
         actions: [
           Badge(
-            badgeColor: Colors.orange,
-            position: BadgePosition.topEnd(top: 10, end: 10),
-            showBadge: true,
-            badgeContent: Text('$counter'),
+            backgroundColor:Colors.orange,
+            isLabelVisible: true,
+            label: Text('$counter'),
             child: IconButton(
               icon: Icon(
                 Icons.shopping_basket,
