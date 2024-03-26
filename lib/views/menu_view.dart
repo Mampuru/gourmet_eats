@@ -92,8 +92,8 @@ class _MenuViewState extends State<MenuView> {
   }
 
  Widget buildBlur({
-   @required Widget child,
-   BorderRadius borderRadius,
+   required Widget child,
+   BorderRadius? borderRadius,
    double sigmaX = 0,
    double sigmaY = 0,
  }) => ClipRRect(
