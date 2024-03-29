@@ -52,6 +52,8 @@ class _BeefViewState extends State<BeefView> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
+        color: Colors.grey[900],
+        height: 120,
         child: bottomBar(context),
       ),
       appBar: AppBar(
@@ -306,33 +308,48 @@ class _BeefViewState extends State<BeefView> {
     );
   }
 
-  Widget bottomBar(BuildContext context){
+  Widget bottomBar(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
+
     return Container(
-      height: 350,
       color: Colors.grey[900],
+      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 5,),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(width: 10,),
-              Text("TOTAL: ",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 13.0,color: Colors.white)),
-              Text("R$total",style: TextStyle(fontWeight: FontWeight.w900,fontSize: 20.0,color: Colors.white))
+              Text(
+                "TOTAL:",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14.0,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                "R$total",
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 20.0,
+                  color: Colors.white,
+                ),
+              ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-            child: PrimaryButton(buttonName: "ADD TO CART",width: _width,onTap: () => {
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => CartView()),)
-              addToCart()
-            },),
-          )
+          SizedBox(height: 8.0),
+          PrimaryButton(
+            buttonName: "ADD TO CART",
+            width: _width,
+            onTap: () => addToCart(),
+          ),
         ],
       ),
     );
   }
+
 
   calculateTotal(){
     var _total = 55*counter;
