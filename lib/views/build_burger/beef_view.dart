@@ -127,14 +127,50 @@ class _BeefViewState extends State<BeefView> {
                 }),
               },
               calculateTotal()
-            }, icon: Icon(Icons.remove_circle,size: 30,)),
+            },
+                icon: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      width: 20,  // Adjust the width and height according to your needs
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    Icon(
+                      Icons.remove_circle,
+                      size: 30,
+                      color: Colors.orange,
+                    ),
+                  ],
+                ),
+            ),
             Text("$counter",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20.0,),),
             IconButton(onPressed: () => {
               setState(() {
                 counter = ++counter;
               }),
               calculateTotal()
-            }, icon: Icon(Icons.add_circle,size: 30,)),
+            }, icon: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: 20,  // Adjust the width and height according to your needs
+                  height: 20,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                Icon(
+                  Icons.add_circle,
+                  size: 30,
+                  color: Colors.orange,
+                ),
+              ],
+            )),
           ],
         ),
         Divider(color: Colors.black,endIndent: 5.0,indent: 5.0,),
@@ -273,10 +309,10 @@ class _BeefViewState extends State<BeefView> {
   Widget bottomBar(BuildContext context){
     var _width = MediaQuery.of(context).size.width;
     return Container(
-      height: 150,
+      height: 350,
       color: Colors.grey[900],
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        // mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           SizedBox(height: 5,),
           Row(
