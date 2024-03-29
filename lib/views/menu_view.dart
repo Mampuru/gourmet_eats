@@ -1,4 +1,3 @@
-
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -18,12 +17,11 @@ class _MenuViewState extends State<MenuView> {
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(BackgroundImage),
-            fit: BoxFit.cover,
-            colorFilter:  ColorFilter.mode(Colors.black.withOpacity(0.3),BlendMode.darken)
-          )
-      ),
-      child:  Column(
+              image: AssetImage(BackgroundImage),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.3), BlendMode.darken))),
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -34,48 +32,100 @@ class _MenuViewState extends State<MenuView> {
                 borderRadius: BorderRadius.circular(20),
                 child: Container(
                   padding: EdgeInsets.all(24),
-                  width:  MediaQuery.of(context).size.width,
+                  width: MediaQuery.of(context).size.width,
                   color: Colors.black.withOpacity(0.2),
                   child: Column(
                     children: [
                       Text(
                         'MENU',
-                        style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,color:Colors.white, decoration: TextDecoration.underline,),),
-                      SizedBox(height: 30.0,),
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.white, // Set underline color
+                          decorationThickness: 1,      // Set underline thickness
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30.0,
+                      ),
                       InkWell(
                         onTap: () => {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => MenuDetailView()),)
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MenuDetailView()),
+                          )
                         },
                         child: Text(
                           'Beef Burger',
-                          style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color:Colors.white,),),
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                      SizedBox(height: 24.0,),
+                      SizedBox(
+                        height: 24.0,
+                      ),
                       InkWell(
                         onTap: () => {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => MenuDetailView()),)
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MenuDetailView()),
+                          )
                         },
                         child: Text(
                           'Chicken Burger',
-                          style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color:Colors.white,),),
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                      SizedBox(height: 24.0,),
+                      SizedBox(
+                        height: 24.0,
+                      ),
                       InkWell(
                         onTap: () => {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => WingsView()),)
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => WingsView()),
+                          )
                         },
                         child: Text(
                           'Wings',
-                          style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color:Colors.white,),),
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                      SizedBox(height: 24.0,),
+                      SizedBox(
+                        height: 24.0,
+                      ),
                       InkWell(
                         onTap: () => {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => DrinksView()),)
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DrinksView()),
+                          )
                         },
                         child: Text(
                           'Drinks',
-                          style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color:Colors.white,),),
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -84,23 +134,28 @@ class _MenuViewState extends State<MenuView> {
             ),
           ),
           Container(
-            child: Image(image: AssetImage(HalalImage),width: 70,height: 70,),
+            child: Image(
+              image: AssetImage(HalalImage),
+              width: 70,
+              height: 70,
+            ),
           ),
         ],
       ),
     );
   }
 
- Widget buildBlur({
-   required Widget child,
-   BorderRadius? borderRadius,
-   double sigmaX = 0,
-   double sigmaY = 0,
- }) => ClipRRect(
-   borderRadius: borderRadius ?? BorderRadius.zero,
-   child: BackdropFilter(
-     filter: ImageFilter.blur(sigmaX: sigmaX,sigmaY: sigmaY),
-     child: child,
-   ),
- );
+  Widget buildBlur({
+    required Widget child,
+    BorderRadius? borderRadius,
+    double sigmaX = 0,
+    double sigmaY = 0,
+  }) =>
+      ClipRRect(
+        borderRadius: borderRadius ?? BorderRadius.zero,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: sigmaX, sigmaY: sigmaY),
+          child: child,
+        ),
+      );
 }
