@@ -60,19 +60,26 @@ class _BeefViewState extends State<BeefView> {
         centerTitle: true,
         title: Text("Beef Burger",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),),
         actions: [
-          Badge(
-            backgroundColor:Colors.orange,
-            isLabelVisible: true,
-            label: Text('$counter'),
-            child: IconButton(
-              icon: Icon(
-                Icons.shopping_basket,
-                color: Colors.white,
+          Stack(
+            children: [
+              IconButton(
+                icon: Icon(
+                  Icons.shopping_basket,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CartView()));
+                },
               ),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => CartView()));
-              },
-            ),
+              Positioned(
+                top: 5,
+                right: 5,
+                child: Badge(
+                  backgroundColor: Colors.orange,
+                  label: Text('$counter', style: TextStyle(color: Colors.white)),
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -266,7 +273,7 @@ class _BeefViewState extends State<BeefView> {
   Widget bottomBar(BuildContext context){
     var _width = MediaQuery.of(context).size.width;
     return Container(
-      height: 90,
+      height: 150,
       color: Colors.grey[900],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
