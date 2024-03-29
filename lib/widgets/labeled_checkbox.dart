@@ -25,6 +25,7 @@ class LabeledCheckbox extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Checkbox(
+              activeColor: Colors.orange,
               checkColor: Colors.black,
               value: value,
               onChanged: (bool? newValue) {
