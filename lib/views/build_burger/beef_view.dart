@@ -51,11 +51,7 @@ class _BeefViewState extends State<BeefView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.grey[900],
-        height: 120,
-        child: bottomBar(context),
-      ),
+      bottomNavigationBar: bottomBar(context),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Colors.grey[900],
@@ -345,6 +341,7 @@ class _BeefViewState extends State<BeefView> {
             width: _width,
             onTap: () => addToCart(),
           ),
+          SizedBox(height: 8.0),
         ],
       ),
     );
