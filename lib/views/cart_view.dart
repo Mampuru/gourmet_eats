@@ -1,4 +1,3 @@
-
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -142,5 +141,4 @@ class _CartViewState extends State<CartView> {
       });
     }
   }
-
 }
