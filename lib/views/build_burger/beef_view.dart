@@ -15,7 +15,7 @@ class BeefView extends StatefulWidget {
   _BeefViewState createState() => _BeefViewState();
 }
 
-enum BurgerType { Beef,Chicken}
+enum BurgerType { Beef, Chicken }
 
 class _BeefViewState extends State<BeefView> {
   late String type;
@@ -33,7 +33,7 @@ class _BeefViewState extends State<BeefView> {
   bool _addChilli = false;
 
   bool _sweetChilli = false;
-  bool _tomatoSauces =  false;
+  bool _tomatoSauces = false;
   bool _bbq = false;
   bool _periPeri = false;
 
@@ -56,7 +56,11 @@ class _BeefViewState extends State<BeefView> {
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Colors.grey[900],
         centerTitle: true,
-        title: Text("Beef Burger",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),),
+        title: Text(
+          "Beef Burger",
+          style: TextStyle(
+              fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
+        ),
         actions: [
           Stack(
             children: [
@@ -66,7 +70,8 @@ class _BeefViewState extends State<BeefView> {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => CartView()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CartView()));
                 },
               ),
               Positioned(
@@ -74,7 +79,8 @@ class _BeefViewState extends State<BeefView> {
                 right: 5,
                 child: Badge(
                   backgroundColor: Colors.orange,
-                  label: Text('$counter', style: TextStyle(color: Colors.white)),
+                  label:
+                      Text('$counter', style: TextStyle(color: Colors.white)),
                 ),
               ),
             ],
@@ -87,7 +93,8 @@ class _BeefViewState extends State<BeefView> {
             children: [
               Container(
                 height: 250.0,
-                child: Center(child: Text("IMAGE",style: TextStyle(fontSize: 30.0),)),),
+                child: Image.asset(doubleBeef,fit:BoxFit.fill ,),
+              ),
               orderList(context),
             ],
           ),
@@ -96,41 +103,85 @@ class _BeefViewState extends State<BeefView> {
     );
   }
 
-  Widget orderList(context){
+  Widget orderList(context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       color: PrimaryColor,
       child: Column(
         children: [
-          SizedBox(height: 20.0,),
+          SizedBox(
+            height: 20.0,
+          ),
           buildBurger()
         ],
       ),
     );
   }
 
-  Widget buildBurger(){
+  Widget buildBurger() {
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text("Single Beef burgers",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20.0),),
-            IconButton(onPressed: () => {
-              if(counter == 0){
-                //Do nothing
-              }else{
-                setState(() {
-                  counter = --counter;
-                }),
+            Text(
+              "Single Beef burgers",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+            ),
+            IconButton(
+              onPressed: () => {
+                if (counter == 0)
+                  {
+                    //Do nothing
+                  }
+                else
+                  {
+                    setState(() {
+                      counter = --counter;
+                    }),
+                  },
+                calculateTotal()
               },
-              calculateTotal()
-            },
+              icon: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    width:
+                        20, // Adjust the width and height according to your needs
+                    height: 20,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  Icon(
+                    Icons.remove_circle,
+                    size: 30,
+                    color: Colors.orange,
+                  ),
+                ],
+              ),
+            ),
+            Text(
+              "$counter",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0,
+              ),
+            ),
+            IconButton(
+                onPressed: () => {
+                      setState(() {
+                        counter = ++counter;
+                      }),
+                      calculateTotal()
+                    },
                 icon: Stack(
                   alignment: Alignment.center,
                   children: [
                     Container(
-                      width: 20,  // Adjust the width and height according to your needs
+                      width:
+                          20, // Adjust the width and height according to your needs
                       height: 20,
                       decoration: BoxDecoration(
                         color: Colors.black,
@@ -138,168 +189,211 @@ class _BeefViewState extends State<BeefView> {
                       ),
                     ),
                     Icon(
-                      Icons.remove_circle,
+                      Icons.add_circle,
                       size: 30,
                       color: Colors.orange,
                     ),
                   ],
-                ),
-            ),
-            Text("$counter",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20.0,),),
-            IconButton(onPressed: () => {
-              setState(() {
-                counter = ++counter;
-              }),
-              calculateTotal()
-            }, icon: Stack(
-              alignment: Alignment.center,
-              children: [
-                Container(
-                  width: 20,  // Adjust the width and height according to your needs
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                Icon(
-                  Icons.add_circle,
-                  size: 30,
-                  color: Colors.orange,
-                ),
-              ],
-            )),
+                )),
           ],
         ),
-        Divider(color: Colors.black,endIndent: 5.0,indent: 5.0,),
-        
-        SizedBox(height: 10.0,),
-        Padding(
-          padding: const EdgeInsets.only(right:270.0),
-          child: Text("Extras",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 19.0),),
+        Divider(
+          color: Colors.black,
+          endIndent: 5.0,
+          indent: 5.0,
         ),
-        LabeledCheckbox(label: "Cheese",padding:const EdgeInsets.only(left:15.0),value: _addCheese,onChanged: (bool newValue) {
-          setState(() {
-            _addCheese = newValue;
-            var _total = 5*counter;
-            if(_addCheese){
-              total = total + _total.toDouble();
-              extras.add("Cheese");
-            }else{
-              total = total - _total.toDouble();
-              extras.remove("Cheese");
-            }
-          });
-        },),
-        LabeledCheckbox(label: "Chilli",padding:const EdgeInsets.only(left:15.0),value: _addChilli,onChanged: (bool newValue) {
-          setState(() {
-            _addChilli = newValue;
-            if(_addChilli){
-              extras.add("Chilli");
-            }else{
-              extras.remove("Chilli");
-            }
-          });
-
-        },),
-        Padding(
-          padding: const EdgeInsets.only(right:190.0),
-          child: Text("Remove Toppings",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 19.0),),
+        SizedBox(
+          height: 10.0,
         ),
-        LabeledCheckbox(label: "Pickles",padding:const EdgeInsets.only(left:15.0),value: _pickles,onChanged: (bool newValue) {
-          setState(() {
-            _pickles = newValue;
-            if(_pickles){
-              toppings.add("Pickles");
-            }else{
-              toppings.remove("Pickles");
-            }
-          });
-        },),
-        LabeledCheckbox(label: "Onions",padding:const EdgeInsets.only(left:15.0),value: _onions,onChanged: (bool newValue) {
-          setState(() {
-            _onions = newValue;
-            if(_onions){
-              toppings.add("Onions");
-            }else{
-              toppings.remove("Onions");
-            }
-          });
-        },),
-        LabeledCheckbox(label: "Lettuce",padding:const EdgeInsets.only(left:15.0),value: _lettuce,onChanged: (bool newValue) {
-          setState(() {
-            _lettuce = newValue;
-            if(_lettuce){
-              toppings.add("Lettuce");
-            }else{
-              toppings.remove("Lettuce");
-            }
-          });
-        },),
-        LabeledCheckbox(label: "Cheese",padding:const EdgeInsets.only(left:15.0),value: _cheese,onChanged: (bool newValue) {
-          setState(() {
-            _cheese = newValue;
-            if(_cheese){
-              toppings.add("Cheese");
-            }else{
-              toppings.remove("Cheese");
-            }
-          });
-        },),
-        LabeledCheckbox(label: "Tomato",padding:const EdgeInsets.only(left:15.0),value: _tomato,onChanged: (bool newValue) {
-          setState(() {
-            _tomato = newValue;
-            if(_tomato){
-              toppings.add("Tomato");
-            }else{
-              toppings.remove("Tomato");
-            }
-          });
-        },),
         Padding(
-          padding: const EdgeInsets.only(right:270.0),
-          child: Text("Sauces",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 19.0),),
+          padding: const EdgeInsets.only(right: 270.0),
+          child: Text(
+            "Extras",
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 19.0),
+          ),
         ),
-        LabeledCheckbox(label: "Sweet Chili",padding:const EdgeInsets.only(left:15.0),value: _sweetChilli,onChanged: (bool newValue) {
-          setState(() {
-            _sweetChilli = newValue;
-            if(_sweetChilli){
-              sauces.add("Sweet Chili");
-            }else{
-              sauces.remove("Sweet Chili");
-            }
-          });
-        },),
-        LabeledCheckbox(label: "Tomato Sauces",padding:const EdgeInsets.only(left:15.0),value: _tomatoSauces,onChanged: (bool newValue) {
-          setState(() {
-            _tomatoSauces = newValue;
-            if(_tomatoSauces){
-              sauces.add("Tomato Sauces");
-            }else{
-              sauces.remove("Tomato Sauces");
-            }
-          });
-        },),
-        LabeledCheckbox(label: "BBQ",padding:const EdgeInsets.only(left:15.0),value: _bbq,onChanged: (bool newValue) {
-          setState(() {
-            _bbq = newValue;
-            if(_bbq){
-              sauces.add("BBQ");
-            }else{
-              sauces.remove("BBQ");
-            }
-          });
-        },),
-        LabeledCheckbox(label: "Peri-Peri",padding:const EdgeInsets.only(left:15.0),value: _periPeri,onChanged: (bool newValue) {
-          setState(() {
-            _periPeri = newValue;
-            if(_periPeri){
-              sauces.add("Peri-Peri");
-            }else{
-              sauces.remove("Peri-Peri");
-            }
-          });
-        },),
+        LabeledCheckbox(
+          label: "Cheese",
+          padding: const EdgeInsets.only(left: 15.0),
+          value: _addCheese,
+          onChanged: (bool newValue) {
+            setState(() {
+              _addCheese = newValue;
+              var _total = 5 * counter;
+              if (_addCheese) {
+                total = total + _total.toDouble();
+                extras.add("Cheese");
+              } else {
+                total = total - _total.toDouble();
+                extras.remove("Cheese");
+              }
+            });
+          },
+        ),
+        LabeledCheckbox(
+          label: "Chilli",
+          padding: const EdgeInsets.only(left: 15.0),
+          value: _addChilli,
+          onChanged: (bool newValue) {
+            setState(() {
+              _addChilli = newValue;
+              if (_addChilli) {
+                extras.add("Chilli");
+              } else {
+                extras.remove("Chilli");
+              }
+            });
+          },
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 190.0),
+          child: Text(
+            "Remove Toppings",
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 19.0),
+          ),
+        ),
+        LabeledCheckbox(
+          label: "Pickles",
+          padding: const EdgeInsets.only(left: 15.0),
+          value: _pickles,
+          onChanged: (bool newValue) {
+            setState(() {
+              _pickles = newValue;
+              if (_pickles) {
+                toppings.add("Pickles");
+              } else {
+                toppings.remove("Pickles");
+              }
+            });
+          },
+        ),
+        LabeledCheckbox(
+          label: "Onions",
+          padding: const EdgeInsets.only(left: 15.0),
+          value: _onions,
+          onChanged: (bool newValue) {
+            setState(() {
+              _onions = newValue;
+              if (_onions) {
+                toppings.add("Onions");
+              } else {
+                toppings.remove("Onions");
+              }
+            });
+          },
+        ),
+        LabeledCheckbox(
+          label: "Lettuce",
+          padding: const EdgeInsets.only(left: 15.0),
+          value: _lettuce,
+          onChanged: (bool newValue) {
+            setState(() {
+              _lettuce = newValue;
+              if (_lettuce) {
+                toppings.add("Lettuce");
+              } else {
+                toppings.remove("Lettuce");
+              }
+            });
+          },
+        ),
+        LabeledCheckbox(
+          label: "Cheese",
+          padding: const EdgeInsets.only(left: 15.0),
+          value: _cheese,
+          onChanged: (bool newValue) {
+            setState(() {
+              _cheese = newValue;
+              if (_cheese) {
+                toppings.add("Cheese");
+              } else {
+                toppings.remove("Cheese");
+              }
+            });
+          },
+        ),
+        LabeledCheckbox(
+          label: "Tomato",
+          padding: const EdgeInsets.only(left: 15.0),
+          value: _tomato,
+          onChanged: (bool newValue) {
+            setState(() {
+              _tomato = newValue;
+              if (_tomato) {
+                toppings.add("Tomato");
+              } else {
+                toppings.remove("Tomato");
+              }
+            });
+          },
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 270.0),
+          child: Text(
+            "Sauces",
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 19.0),
+          ),
+        ),
+        LabeledCheckbox(
+          label: "Sweet Chili",
+          padding: const EdgeInsets.only(left: 15.0),
+          value: _sweetChilli,
+          onChanged: (bool newValue) {
+            setState(() {
+              _sweetChilli = newValue;
+              if (_sweetChilli) {
+                sauces.add("Sweet Chili");
+              } else {
+                sauces.remove("Sweet Chili");
+              }
+            });
+          },
+        ),
+        LabeledCheckbox(
+          label: "Tomato Sauces",
+          padding: const EdgeInsets.only(left: 15.0),
+          value: _tomatoSauces,
+          onChanged: (bool newValue) {
+            setState(() {
+              _tomatoSauces = newValue;
+              if (_tomatoSauces) {
+                sauces.add("Tomato Sauces");
+              } else {
+                sauces.remove("Tomato Sauces");
+              }
+            });
+          },
+        ),
+        LabeledCheckbox(
+          label: "BBQ",
+          padding: const EdgeInsets.only(left: 15.0),
+          value: _bbq,
+          onChanged: (bool newValue) {
+            setState(() {
+              _bbq = newValue;
+              if (_bbq) {
+                sauces.add("BBQ");
+              } else {
+                sauces.remove("BBQ");
+              }
+            });
+          },
+        ),
+        LabeledCheckbox(
+          label: "Peri-Peri",
+          padding: const EdgeInsets.only(left: 15.0),
+          value: _periPeri,
+          onChanged: (bool newValue) {
+            setState(() {
+              _periPeri = newValue;
+              if (_periPeri) {
+                sauces.add("Peri-Peri");
+              } else {
+                sauces.remove("Peri-Peri");
+              }
+            });
+          },
+        ),
       ],
     );
   }
@@ -347,29 +441,28 @@ class _BeefViewState extends State<BeefView> {
     );
   }
 
-
-  calculateTotal(){
-    var _total = 55*counter;
+  calculateTotal() {
+    var _total = 55 * counter;
     setState(() {
       total = _total.toDouble();
     });
   }
 
-  calculateDoubleTotal(){
-    var _total = 75*counter;
+  calculateDoubleTotal() {
+    var _total = 75 * counter;
     setState(() {
       total = _total.toDouble();
     });
   }
 
-  addCheese(){
-    var _total =  5*counter;
+  addCheese() {
+    var _total = 5 * counter;
     setState(() {
       total = total + _total.toDouble();
     });
   }
 
-  addToCart(){
+  addToCart() {
     CartItem item = new CartItem();
     item.price = total;
     item.type = type;
@@ -380,5 +473,4 @@ class _BeefViewState extends State<BeefView> {
 
     controller.addToCart(item);
   }
-
 }
