@@ -14,3 +14,6 @@ const TitleText = 30.0;
 //Images
 const BackgroundImage = 'assets/background_dark.jpeg';
 const HalalImage = 'assets/halal.png';
+const chicken = 'assets/chicken.jpg';
+const singleBeef = 'assets/single_beef.png';
+const doubleBeef = 'assets/double_beef.jpg';
